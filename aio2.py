@@ -34,7 +34,7 @@ def download_file(url):
     return local_filename
 
 
-async def bogous_download_file(url):
+async def bogus_download_file(url):
     local_filename = url.split("/")[-1] + ".jpg"
     # NOTE the stream=True parameter below
     with requests.get(url, stream=True) as r:
@@ -73,9 +73,9 @@ def download_serially():
     print(f"Finished in {t2 - t1} seconds")
 
 
-async def download_with_bogous_async():
+async def download_with_bogus_async():
     t1 = time.perf_counter()
-    await asyncio.gather(*(bogous_download_file(url) for url in img_urls))
+    await asyncio.gather(*(bogus_download_file(url) for url in img_urls))
     t2 = time.perf_counter()
     print(f"Finished in {t2 - t1} seconds")
 
@@ -91,6 +91,6 @@ if __name__ == "__main__":
     print()
     download_with_threads()
     print()
-    asyncio.run(download_with_bogous_async())
+    asyncio.run(download_with_bogus_async())
     print()
     asyncio.run(download_with_real_async())
